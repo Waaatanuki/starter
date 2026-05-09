@@ -11,7 +11,6 @@ withDefaults(defineProps<{
 }>(), {
   size: '',
   type: 'primary',
-  color: 'rgb(13 148 136)',
   loading: false,
   disabled: false,
 })

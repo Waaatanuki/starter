@@ -4,12 +4,12 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import { VueRouterAutoImports } from 'unplugin-vue-router'
-import VueRouter from 'unplugin-vue-router/vite'
 import { defineConfig } from 'vite'
+import { VueRouterAutoImports } from 'vue-router/unplugin'
+import VueRouter from 'vue-router/vite'
 
 export default defineConfig({
-  base: '/tool/',
+  base: '/demo/',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -17,7 +17,9 @@ export default defineConfig({
   },
   plugins: [
     Vue(),
-    VueRouter(),
+    VueRouter({
+      dts: 'types/vue-router.d.ts',
+    }),
     AutoImport({
       imports: [
         'vue',
@@ -36,6 +38,8 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
       dts: 'types/components.d.ts',
     }),
-    UnoCSS(),
+    UnoCSS({
+      inspector: false,
+    }),
   ],
 })
